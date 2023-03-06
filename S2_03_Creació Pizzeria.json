@@ -1,0 +1,23 @@
+
+db.createCollection( 'order', {validator: {$jsonSchema: {bsonType: 'object',title:'order',required: [         'number',          'store',          'customer',          'data',          'option'],properties: {number: {bsonType: 'int'},store: {bsonType: 'objectId'},customer: {bsonType: 'object',
+title:'object',properties: {id: {bsonType: 'int'},firstname: {bsonType: 'string'},lastname: {bsonType: 'string'},address: {bsonType: 'object',
+title:'object',properties: {street: {bsonType: 'string'},number: {bsonType: 'int'},floor: {bsonType: 'string'},door: {bsonType: 'string'},location: {bsonType: 'string'},postalcode: {bsonType: 'int'},province: {bsonType: 'string'}}}}},data: {bsonType: 'date'},totalprice: {bsonType: 'double'},Store: {bsonType: 'objectId'},option: {enum: },date_delivery: {bsonType: 'date'},employee_delivery: {bsonType: 'object',
+title:'object',properties: {id: {bsonType: 'string'},firstname: {bsonType: 'string'},lastname: {bsonType: 'string'},type: {enum: }}}}         }      }});  
+ db.order.createIndex(
+{
+"number": 1
+},
+ {
+name: "order_ix_1",
+unique: true
+}
+)
+
+
+db.createCollection( 'lines', {validator: {$jsonSchema: {bsonType: 'object',title:'lines',required: [         'order_id',          'number',          'product_id',          'quantity'],properties: {order_id: {bsonType: 'objectId'},number: {bsonType: 'int'},product_id: {bsonType: 'objectId'},quantity: {bsonType: 'int'}}         }      }});  
+db.createCollection( 'product', {validator: {$jsonSchema: {bsonType: 'object',title:'product',required: [         'id',          'name',          'price',          'type',          'category'],properties: {id: {bsonType: 'objectId'},name: {bsonType: 'string'},description: {bsonType: 'string'},price: {bsonType: 'double'},image: {bsonType: 'string'},type: {enum: },category: {bsonType: 'array',items: {bsonType: 'string'}}}         }      }});  
+db.createCollection( 'Store', {validator: {$jsonSchema: {bsonType: 'object',title:'Store',required: [         'id'],properties: {id: {bsonType: 'objectId'},employee: {bsonType: 'array',items: {
+title:'object',properties: {id: {bsonType: 'string'},firstname: {bsonType: 'string'},lastname: {bsonType: 'string'},type: {enum: }}}},customer: {bsonType: 'array',items: {
+title:'object',properties: {id: {bsonType: 'int'},firstname: {bsonType: 'string'},lastname: {bsonType: 'string'},address: {bsonType: 'object',
+title:'object',properties: {street: {bsonType: 'string'},number: {bsonType: 'int'},floor: {bsonType: 'string'},door: {bsonType: 'string'},location: {bsonType: 'string'},postalcode: {bsonType: 'int'},province: {bsonType: 'string'}}}}}},address: {bsonType: 'object',
+title:'object',properties: {street: {bsonType: 'string'},number: {bsonType: 'int'},floor: {bsonType: 'string'},door: {bsonType: 'string'},location: {bsonType: 'string'},postalcode: {bsonType: 'int'},province: {bsonType: 'string'}}}}         }      }});  

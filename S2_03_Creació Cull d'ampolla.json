@@ -1,0 +1,21 @@
+
+db.createCollection( 'order', {validator: {$jsonSchema: {bsonType: 'object',description:'Dades cull d\'ampolla',title:'order',required: [         'number',          'data',          'customer',          'employee'],properties: {number: {bsonType: 'int'},data: {bsonType: 'date'},customer: {bsonType: 'objectId'},employee: {bsonType: 'object',
+title:'object',required: [         'employee_name'],properties: {employee_name: {bsonType: 'string'}}},total_price: {bsonType: 'double'}}         }      }});  
+ db.order.createIndex(
+{
+"serie": 1,
+"number": 1
+},
+ {
+name: "culldampolla_ix_1"
+}
+)
+
+
+db.createCollection( 'customer', {validator: {$jsonSchema: {bsonType: 'object',title:'customer',required: [         'name',          'surname'],properties: {name: {bsonType: 'string'},surname: {bsonType: 'string'},adress: {bsonType: 'array',items: {
+title:'object',properties: {street: {bsonType: 'string'},number: {bsonType: 'int'},floor: {bsonType: 'string'},door: {bsonType: 'string'},city: {bsonType: 'string'},postalcode: {bsonType: 'int'},country: {bsonType: 'string'}}}},telefon: {bsonType: 'string'},email: {bsonType: 'string'},created: {bsonType: 'date'},recommended: {bsonType: 'objectId'}}         }      }});  
+db.createCollection( 'oderline', {validator: {$jsonSchema: {bsonType: 'object',title:'oderline',required: [         'order',          'order',          'glasses',          'quantity'],properties: {order: {bsonType: 'objectId'},order: {bsonType: 'int'},glasses: {bsonType: 'object',
+title:'object',required: [         'brand'],properties: {graduation: {bsonType: 'double'},price: {bsonType: 'double'},color: {bsonType: 'string'},type: {enum: },brand: {bsonType: 'object',
+title:'object',required: [         'suplier'],properties: {description: {bsonType: 'string'},suplier: {bsonType: 'object',
+title:'object',properties: {name: {bsonType: 'string'},nif: {bsonType: 'string'},fax: {bsonType: 'string'},adress: {bsonType: 'array',items: {
+title:'object',properties: {street: {bsonType: 'string'},number: {bsonType: 'int'},floor: {bsonType: 'string'},door: {bsonType: 'string'},city: {bsonType: 'string'},postalcode: {bsonType: 'int'},country: {bsonType: 'string'}}}}}}}}}},quantity: {bsonType: 'int'}}         }      }});  
